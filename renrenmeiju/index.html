@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人人美剧官网入口-美剧在线观看入口_人人美剧官方首页导航</title>
+<meta name="description" content="人人美剧官网入口页面，汇总美剧在线观看入口、剧集分类与热门推荐，帮助访问者快速找到人人美剧官网入口并了解站内可用内容与使用方式。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101826'/%3E%3Cpath d='M20 18h24a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H20a4 4 0 0 1-4-4V22a4 4 0 0 1 4-4z' fill='none' stroke='%23f5b73d' stroke-width='3'/%3E%3Cpath d='M28 27l12 6-12 6z' fill='%23f5b73d'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0d1420;
+  --bg2:#121b2a;
+  --panel:#172236;
+  --line:#243149;
+  --text:#e8edf5;
+  --muted:#9aa8bd;
+  --gold:#f5b73d;
+  --gold2:#ffd27a;
+  --blue:#5b8def;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC",system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+.narrow{max-width:820px}
+
+/* Header */
+header.site{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,20,32,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:14px 0;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand-mark{
+  width:40px;height:40px;flex:none;border-radius:11px;
+  background:linear-gradient(150deg,#20304a,#141d2d);
+  border:1px solid #2d3d58;display:grid;place-items:center;
+}
+.brand-text{
+  font-size:17px;font-weight:700;letter-spacing:.3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.brand-text span{color:var(--gold)}
+nav.links{display:flex;gap:6px;flex-wrap:wrap}
+nav.links a{
+  font-size:14px;color:var(--muted);padding:7px 12px;border-radius:9px;
+  transition:.2s;
+}
+nav.links a:hover,nav.links a:focus-visible{color:var(--gold2);background:#1b2739;outline:none}
+.nav-cta{
+  font-size:13.5px;font-weight:600;color:#1a1305;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  padding:9px 18px;border-radius:10px;white-space:nowrap;flex:none;
+  transition:.2s;
+}
+.nav-cta:hover{filter:brightness(1.08)}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:64px 0 54px;
+  background:
+    radial-gradient(900px 420px at 78% -10%,rgba(91,141,239,.20),transparent 65%),
+    radial-gradient(700px 380px at 12% 8%,rgba(245,183,61,.13),transparent 62%),
+    var(--bg2);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:44px;align-items:center}
+.tagline{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;color:var(--gold2);letter-spacing:1.2px;
+  background:rgba(245,183,61,.10);border:1px solid rgba(245,183,61,.28);
+  padding:5px 13px;border-radius:999px;margin-bottom:20px;
+}
+h1{
+  font-size:clamp(28px,3.6vw,42px);
+  line-height:1.28;font-weight:800;letter-spacing:.5px;
+  margin-bottom:18px;
+}
+h1 em{font-style:normal;color:var(--gold)}
+.hero p.lead{
+  color:#c2ccdb;font-size:15.5px;max-width:560px;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#1a1305;font-weight:700;font-size:15px;
+  padding:12px 26px;border-radius:12px;transition:.2s;
+}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14.5px;color:var(--text);
+  border:1px solid #33445f;padding:11px 22px;border-radius:12px;
+  background:#16202f;transition:.2s;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold2)}
+.hero-note{margin-top:18px;font-size:12.5px;color:var(--muted)}
+
+/* Hero art */
+.hero-art{
+  background:linear-gradient(160deg,#1b2739,#121b2a);
+  border:1px solid #2a3852;border-radius:22px;
+  padding:20px;box-shadow:0 24px 60px -28px rgba(0,0,0,.9);
+}
+.screen{
+  border-radius:14px;overflow:hidden;border:1px solid #2b3a55;
+  background:#0b111b;position:relative;
+}
+.screen-bar{display:flex;gap:6px;padding:9px 12px;background:#141e2e;border-bottom:1px solid #22304a}
+.dot{width:9px;height:9px;border-radius:50%}
+.screen-body{padding:16px 16px 18px}
+.screen-title{font-size:13px;color:var(--muted);letter-spacing:.6px;margin-bottom:12px}
+.ep-row{display:flex;gap:10px;margin-bottom:9px}
+.ep-thumb{
+  width:56px;height:38px;flex:none;border-radius:7px;
+  background:linear-gradient(140deg,#2a3b58,#1b2739);border:1px solid #31425e;
+}
+.ep-lines{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.ep-line{height:8px;border-radius:4px;background:#26334a}
+.ep-line.s{width:62%}
+.ep-line.xs{width:38%;background:#1f2b40}
+
+/* Sections */
+section.block{padding:54px 0;border-bottom:1px solid var(--line)}
+section.block:last-of-type{border-bottom:none}
+.sec-head{margin-bottom:26px}
+.sec-eyebrow{
+  font-size:12px;letter-spacing:2px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:9px;font-weight:600;
+}
+h2{font-size:clamp(21px,2.4vw,27px);font-weight:750;line-height:1.35;letter-spacing:.3px}
+.sec-sub{color:var(--muted);font-size:14.5px;margin-top:9px;max-width:720px}
+
+/* Grid cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px;transition:.22s;
+}
+.card:hover{border-color:#33456a;transform:translateY(-2px)}
+.card-icon{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(245,183,61,.10);border:1px solid rgba(245,183,61,.25);
+  margin-bottom:15px;
+}
+.card h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
+.card p{font-size:14px;color:#aab6c9;line-height:1.72}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+.step{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--radius);padding:24px 22px 20px;
+}
+.step::before{
+  counter-increment:s;content:"0" counter(s);
+  font-size:13px;font-weight:800;color:var(--gold);letter-spacing:1px;
+  display:block;margin-bottom:12px;
+}
+.step h3{font-size:16px;margin-bottom:8px}
+.step p{font-size:13.8px;color:#aab6c9}
+
+/* Search */
+.search-panel{
+  background:linear-gradient(150deg,#1a2537,#131c2b);
+  border:1px solid #2a3852;border-radius:var(--radius);
+  padding:26px;margin-bottom:22px;
+}
+.search-label{font-size:13.5px;color:var(--muted);margin-bottom:11px}
+.search-row{display:flex;gap:10px;flex-wrap:wrap}
+.search-row input{
+  flex:1;min-width:200px;
+  background:#0f1826;border:1px solid #2c3b56;color:var(--text);
+  font-size:14.5px;padding:12px 16px;border-radius:11px;
+  font-family:inherit;outline:none;transition:.2s;
+}
+.search-row input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,183,61,.12)}
+.search-row button{
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#1a1305;font-weight:700;font-size:14.5px;
+  border:none;padding:12px 26px;border-radius:11px;cursor:pointer;
+  font-family:inherit;transition:.2s;
+}
+.search-row button:hover{filter:brightness(1.08)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{
+  font-size:13px;color:var(--muted);background:#16202f;
+  border:1px solid #2b3a55;padding:6px 14px;border-radius:999px;
+  cursor:pointer;transition:.2s;font-family:inherit;
+}
+.chip:hover{color:var(--gold2);border-color:#4a5f85}
+.chip.active{background:rgba(245,183,61,.14);border-color:var(--gold);color:var(--gold2);font-weight:600}
+.result-info{font-size:13px;color:var(--muted);margin-bottom:16px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.result-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:13px;
+  padding:16px 18px;
+}
+.result-card .rc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;gap:8px}
+.result-card h3{font-size:15px;font-weight:700}
+.badge{
+  font-size:11px;padding:2px 9px;border-radius:999px;flex:none;
+  background:rgba(91,141,239,.15);color:#8fb2ff;border:1px solid rgba(91,141,239,.32);
+}
+.result-card p{font-size:13px;color:#9fabbd;line-height:1.65}
+.empty{font-size:14px;color:var(--muted);padding:22px;text-align:center;border:1px dashed #2b3a55;border-radius:12px}
+
+/* Table-ish list */
+.flow{display:grid;gap:14px}
+.flow-item{
+  display:flex;gap:16px;align-items:flex-start;
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:13px;padding:18px 20px;
+}
+.flow-num{
+  width:30px;height:30px;flex:none;border-radius:9px;
+  display:grid;place-items:center;font-size:13px;font-weight:800;
+  color:var(--gold);background:rgba(245,183,61,.10);
+  border:1px solid rgba(245,183,61,.28);
+}
+.flow-item h3{font-size:15.5px;margin-bottom:5px}
+.flow-item p{font-size:13.8px;color:#aab6c9}
+
+/* FAQ */
+.faq{display:grid;gap:12px}
+details{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:13px;padding:16px 20px;
+}
+details[open]{border-color:#33456a}
+summary{
+  font-size:15px;font-weight:650;cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:19px;font-weight:400;flex:none}
+details[open] summary::after{content:"−"}
+details p{font-size:14px;color:#aab6c9;margin-top:11px;line-height:1.75}
+
+/* CTA band */
+.cta-band{
+  background:
+    radial-gradient(600px 220px at 80% 0%,rgba(245,183,61,.16),transparent 65%),
+    linear-gradient(150deg,#1a2537,#111a28);
+  border:1px solid #2c3b56;border-radius:20px;
+  padding:36px 34px;display:flex;justify-content:space-between;
+  align-items:center;gap:26px;flex-wrap:wrap;
+}
+.cta-band h2{font-size:22px;margin-bottom:8px}
+.cta-band p{color:var(--muted);font-size:14.5px;max-width:520px}
+
+/* Footer */
+footer.site{
+  border-top:1px solid var(--line);background:#0a111b;
+  padding:34px 0 26px;margin-top:0;
+}
+.foot-top{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-bottom:22px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.foot-brand .brand-mark{width:32px;height:32px;border-radius:9px}
+.foot-brand strong{font-size:15px}
+.foot-desc{font-size:13px;color:var(--muted);max-width:420px;line-height:1.7}
+.foot-links{display:flex;gap:34px;flex-wrap:wrap}
+.foot-col h4{font-size:13px;color:#cfd8e6;margin-bottom:10px;font-weight:650}
+.foot-col a{display:block;font-size:13px;color:var(--muted);padding:3px 0;transition:.2s}
+.foot-col a:hover{color:var(--gold2)}
+.foot-bottom{
+  border-top:1px solid #1b2537;padding-top:18px;
+  font-size:12.5px;color:#7d8ba1;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+/* Mobile */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero-art{order:-1}
+  .grid-3,.steps,.result-grid{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .nav-inner{flex-wrap:wrap;gap:12px}
+  nav.links{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  nav.links a{white-space:nowrap;font-size:13.5px;padding:6px 10px}
+  .nav-cta{padding:8px 14px;font-size:13px}
+  .hero{padding:40px 0 38px}
+  section.block{padding:40px 0}
+  .cta-band{padding:26px 22px}
+  .brand-text{font-size:15.5px}
+  .foot-links{gap:22px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="人人美剧官网入口 首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <rect x="2.5" y="4" width="19" height="15" rx="2.5" stroke="#f5b73d" stroke-width="1.7"/>
+          <path d="M10 9.2l5 2.8-5 2.8z" fill="#f5b73d"/>
+        </svg>
+      </span>
+      <span class="brand-text">人人美剧官网入口</span>
+    </a>
+    <nav class="links" aria-label="主要导航">
+      <a href="#entry">入口说明</a>
+      <a href="#search">剧集查找</a>
+      <a href="#steps">使用步骤</a>
+      <a href="#notes">常见问题</a>
+      <a href="#about">关于本站</a>
+    </nav>
+    <a class="nav-cta" href="#entry">前往入口</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tagline">美剧在线观看 · 入口导航</span>
+        <h1>人人美剧官网入口</h1>
+        <p class="lead">这里围绕人人美剧官网入口整理页面信息：入口说明、剧集分类、热门推荐与常见疑问集中呈现，让访问者在同一页内看清能做什么、该从哪里开始。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#entry">
+            查看入口说明
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" stroke="#1a1305" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn-ghost" href="#search">查找剧集</a>
+        </div>
+        <p class="hero-note">页面内容为入口与内容说明，实际可观看范围以站内当时状态为准。</p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="screen">
+          <div class="screen-bar">
+            <span class="dot" style="background:#e2605f"></span>
+            <span class="dot" style="background:#e0b554"></span>
+            <span class="dot" style="background:#5fbf7a"></span>
+          </div>
+          <div class="screen-body">
+            <div class="screen-title">剧集列表预览</div>
+            <div class="ep-row">
+              <div class="ep-thumb"></div>
+              <div class="ep-lines"><div class="ep-line"></div><div class="ep-line s"></div></div>
+            </div>
+            <div class="ep-row">
+              <div class="ep-thumb"></div>
+              <div class="ep-lines"><div class="ep-line"></div><div class="ep-line xs"></div></div>
+            </div>
+            <div class="ep-row">
+              <div class="ep-thumb"></div>
+              <div class="ep-lines"><div class="ep-line"></div><div class="ep-line s"></div></div>
+            </div>
+            <div class="ep-row">
+              <div class="ep-thumb"></div>
+              <div class="ep-lines"><div class="ep-line"></div><div class="ep-line xs"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRY -->
+  <section class="block" id="entry">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Entry</div>
+        <h2>人人美剧官网入口能提供什么</h2>
+        <p class="sec-sub">访问者搜索人人美剧官网入口，通常是想确认站点的真实地址、可看内容与使用方式。以下三项是入口页面最需要说清的部分。</p>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h10M4 17h13" stroke="#f5b73d" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>入口位置确认</h3>
+          <p>人人美剧官网入口指向站点的首页地址。打开后先看站点标识、导航结构与内容分区是否完整，再决定是否继续浏览。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="#f5b73d" stroke-width="1.8"/><path d="M10 9.5l5 2.5-5 2.5z" fill="#f5b73d"/></svg>
+          </div>
+          <h3>内容范围浏览</h3>
+          <p>站内以美剧剧集为主体，按剧名、类型与更新状态分区。通过人人美剧官网入口进入后，可先在分类区判断是否有想看的剧。</p>
+        </article>
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="#f5b73d" stroke-width="1.8"/><path d="M16 16l4 4" stroke="#f5b73d" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>剧名快速定位</h3>
+          <p>知道剧名时，用站内搜索比逐页翻找更快。人人美剧官网入口页面下方的查找区可先做关键词筛选，再进入对应剧集页。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="block" id="search">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Find</div>
+        <h2>按剧名或类型查找剧集</h2>
+        <p class="sec-sub">下方为演示用的筛选区，列出常见美剧条目与类型标签，输入关键词或点击标签即可过滤。真实片库以人人美剧官网入口站点内实际内容为准。</p>
+      </div>
+
+      <div class="search-panel">
+        <label class="search-label" for="q">输入剧名关键词</label>
+        <div class="search-row">
+          <input id="q" type="search" placeholder="例如：绝命毒师、老友记、科幻" autocomplete="off">
+          <button type="button" id="searchBtn">筛选</button>
+        </div>
+        <div class="filters" id="filters" role="group" aria-label="类型筛选">
+          <button class="chip active" data-type="全部" type="button">全部</button>
+          <button class="chip" data-type="剧情" type="button">剧情</button>
+          <button class="chip" data-type="喜剧" type="button">喜剧</button>
+          <button class="chip" data-type="科幻" type="button">科幻</button>
+          <button class="chip" data-type="犯罪" type="button">犯罪</button>
+        </div>
+      </div>
+
+      <p class="result-info" id="resultInfo" aria-live="polite">共 6 部示例条目</p>
+      <div class="result-grid" id="results"></div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="block" id="steps">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Steps</div>
+        <h2>通过人人美剧官网入口观看的三步</h2>
+        <p class="sec-sub">流程本身不复杂，关键在于先确认地址、再定位剧集、最后按集数顺序观看，避免反复跳转。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>确认入口地址</h3>
+          <p>从可信的导航页或书签进入人人美剧官网入口，核对页面标题与站点标识，避免进入仿冒或过期页面。</p>
+        </div>
+        <div class="step">
+          <h3>定位目标剧集</h3>
+          <p>在分类区按类型浏览，或在搜索框输入剧名。找到剧集页后先看简介与季数，确认是否为想看的版本。</p>
+        </div>
+        <div class="step">
+          <h3>按季集顺序播放</h3>
+          <p>进入剧集页后从第一季第一集开始，播放器与选集列表通常会同步显示。中途离开可用收藏功能记录进度。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTES -->
+  <section class="block" id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Notes</div>
+        <h2>进入人人美剧官网入口前的注意事项</h2>
+        <p class="sec-sub">下面几点来自访问者的常见反馈，属于使用层面的提醒，不涉及具体片源承诺。</p>
+      </div>
+      <div class="flow">
+        <div class="flow-item">
+          <span class="flow-num">1</span>
+          <div>
+            <h3>地址以官方标识为准</h3>
+            <p>同类页面较多，人人美剧官网入口的真实地址应以站点自身的品牌标识与导航结构判断，不要只凭搜索结果标题点击。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">2</span>
+          <div>
+            <h3>播放前检查网络与设备</h3>
+            <p>美剧多为高清片源，移动端建议在 Wi-Fi 环境下观看；浏览器过旧时可能出现播放器加载不全，可先更新浏览器再试。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">3</span>
+          <div>
+            <h3>剧集更新存在时间差</h3>
+            <p>新剧与更新集数通常不是实时同步，人人美剧官网入口页面上的更新标记仅代表站内状态，具体以剧集页显示为准。</p>
+          </div>
+        </div>
+        <div class="flow-item">
+          <span class="flow-num">4</span>
+          <div>
+            <h3>收藏与历史记录仅在站内</h3>
+            <p>观看进度、收藏列表一般保存在当前站点账户或本地，更换设备或清理浏览数据后可能需要重新查找剧集。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">FAQ</div>
+        <h2>人人美剧官网入口常见问题</h2>
+      </div>
+      <div class="faq narrow">
+        <details open>
+          <summary>人人美剧官网入口是官方站点吗？</summary>
+          <p>本页是围绕人人美剧官网入口整理的信息页，用于说明入口位置、内容分类与使用方式，并非站点本身。真实地址请以站点标识和正式导航为准。</p>
+        </details>
+        <details>
+          <summary>为什么有时打不开入口页面？</summary>
+          <p>常见原因包括网络波动、浏览器缓存异常或地址已变更。可先更换网络、清理缓存再试；若仍无法打开，说明该地址可能已不再有效。</p>
+        </details>
+        <details>
+          <summary>站内剧集需要注册吗？</summary>
+          <p>是否需要注册取决于站点当时的设置。一般情况下浏览分类和剧集简介无需登录，收藏与进度记录则可能需要账户支持。</p>
+        </details>
+        <details>
+          <summary>找不到某部剧怎么办？</summary>
+          <p>先尝试用剧名全称或英文名搜索，再按类型浏览。如果站内确实没有收录，通常需要等待片库补充，页面不会给出具体时间承诺。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / CTA -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">About</div>
+        <h2>关于这个入口页面</h2>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <h3>页面定位</h3>
+          <p>本页把人人美剧官网入口相关的入口说明、查找方式与注意事项集中在一处，方便第一次访问的人快速建立判断，而不是在多个链接之间反复跳转。</p>
+        </article>
+        <article class="card">
+          <h3>内容边界</h3>
+          <p>页面中的剧集条目为示例数据，用于演示筛选交互；片库完整度、更新频率与播放体验均以人人美剧官网入口实际站点状态为准，本页不作额外承诺。</p>
+        </article>
+      </div>
+
+      <div class="cta-band" style="margin-top:26px">
+        <div>
+          <h2>准备好进入人人美剧官网入口</h2>
+          <p>先确认地址与站点标识，再按剧名或类型定位剧集，就能顺畅开始观看。需要回看说明时，可随时返回本页。</p>
+        </div>
+        <a class="btn-primary" href="#entry">返回入口说明</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect x="2.5" y="4" width="19" height="15" rx="2.5" stroke="#f5b73d" stroke-width="1.7"/>
+              <path d="M10 9.2l5 2.8-5 2.8z" fill="#f5b73d"/>
+            </svg>
+          </span>
+          <strong>人人美剧官网入口</strong>
+        </div>
+        <p class="foot-desc">围绕人人美剧官网入口的信息页，提供入口说明、剧集查找与使用提醒。页面内容为导航与说明性质，片库状态以实际站点为准。</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>页面导航</h4>
+          <a href="#entry">入口说明</a>
+          <a href="#search">剧集查找</a>
+          <a href="#steps">使用步骤</a>
+        </div>
+        <div class="foot-col">
+          <h4>帮助</h4>
+          <a href="#notes">注意事项</a>
+          <a href="#faq">常见问题</a>
+          <a href="#about">关于本站</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>人人美剧官网入口 · 信息导航页</span>
+      <span>示例数据仅用于演示筛选功能</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var data=[
+    {name:"绝命毒师",type:"犯罪",desc:"高中化学教师转行制毒，五季完整剧情线，适合按季顺序观看。"},
+    {name:"老友记",type:"喜剧",desc:"六位好友的纽约生活日常，共十季，单集时长短，适合碎片时间。"},
+    {name:"西部世界",type:"科幻",desc:"主题乐园中的仿生人觉醒故事，多线叙事，建议连续观看。"},
+    {name:"纸牌屋",type:"剧情",desc:"政坛权力博弈题材，节奏紧凑，适合喜欢政治剧的观众。"},
+    {name:"生活大爆炸",type:"喜剧",desc:"四位科学家与邻居的日常互动，共十二季，轻松向情景喜剧。"},
+    {name:"怪奇物语",type:"科幻",desc:"小镇少年与异世界生物的故事，季与季之间剧情衔接紧密。"}
+  ];
+  var q=document.getElementById('q');
+  var results=document.getElementById('results');
+  var info=document.getElementById('resultInfo');
+  var activeType='全部';
+
+  function render(){
+    var kw=q.value.trim().toLowerCase();
+    var list=data.filter(function(d){
+      var okType=(activeType==='全部'||d.type===activeType);
+      var okKw=!kw||d.name.toLowerCase().indexOf(kw)>-1||d.type.toLowerCase().indexOf(kw)>-1||d.desc.toLowerCase().indexOf(kw)>-1;
+      return okType&&okKw;
+    });
+    if(!list.length){
+      results.innerHTML='<div class="empty">没有匹配的条目，换个剧名或类型试试。</div>';
+    }else{
+      results.innerHTML=list.map(function(d){
+        return '<article class="result-card"><div class="rc-top"><h3>'+d.name+'</h3><span class="badge">'+d.type+'</span></div><p>'+d.desc+'</p></article>';
+      }).join('');
+    }
+    info.textContent='共 '+list.length+' 部示例条目'+(activeType!=='全部'?' · 类型：'+activeType:'');
+  }
+
+  document.getElementById('searchBtn').addEventListener('click',render);
+  q.addEventListener('input',render);
+  q.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();render();}});
+
+  document.getElementById('filters').addEventListener('click',function(e){
+    var btn=e.target.closest('.chip');
+    if(!btn)return;
+    Array.prototype.forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.remove('active');});
+    btn.classList.add('active');
+    activeType=btn.getAttribute('data-type');
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+  </html>
