@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金牌影院-金牌影院在线电影_高清影视资源免费观看</title>
+<meta name="description" content="金牌影院是一个在线影视观影平台，汇集电影、电视剧、动漫与综艺资源，提供高清播放、影片分类浏览与快速检索入口，方便影迷按类型与热度找到想看的影片。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111c2b'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23e8b44a' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23e8b44a'/%3E%3Cpath d='M7 20h8M7 32h8M7 44h8M49 20h8M49 32h8M49 44h8' stroke='%23e8b44a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#101826;
+    --ink-2:#1a2536;
+    --paper:#f6f3ec;
+    --paper-2:#fffdf8;
+    --gold:#e8b44a;
+    --gold-deep:#c8942a;
+    --text:#1d2533;
+    --muted:#5c6674;
+    --line:rgba(16,24,38,.12);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--text);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .wrap{width:min(1160px,92vw);margin:0 auto;}
+
+  /* ---------- 页头 ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(16,24,38,.96);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(232,180,74,.25);
+  }
+  .navbar{
+    display:flex;align-items:center;gap:28px;
+    padding:14px 0;
+  }
+  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .logo-mark{width:38px;height:38px;flex-shrink:0;}
+  .logo-text{
+    font-size:1.22rem;font-weight:800;letter-spacing:.06em;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+  nav.main{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap;}
+  nav.main a{
+    font-size:.94rem;color:#dfe4ec;padding:4px 0;
+    border-bottom:2px solid transparent;transition:.2s;
+  }
+  nav.main a:hover{color:var(--gold);border-bottom-color:var(--gold);}
+  .top-cta{
+    flex-shrink:0;
+    background:var(--gold);color:#16202f;
+    font-weight:700;font-size:.9rem;
+    padding:8px 18px;border-radius:999px;
+    transition:.2s;
+  }
+  .top-cta:hover{background:#f2c464;}
+  .menu-toggle{display:none;background:none;border:0;color:var(--gold);font-size:1.5rem;cursor:pointer;}
+
+  /* ---------- 首屏 ---------- */
+  .hero{
+    background:
+      radial-gradient(1100px 460px at 82% -12%, rgba(232,180,74,.20), transparent 62%),
+      linear-gradient(160deg,#101826 0%,#182436 58%,#101826 100%);
+    color:#eef1f6;
+    padding:64px 0 58px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:auto 0 0 0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(232,180,74,.6),transparent);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.25fr .85fr;gap:48px;align-items:center;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.8rem;letter-spacing:.14em;color:var(--gold);
+    border:1px solid rgba(232,180,74,.45);
+    border-radius:999px;padding:5px 14px;margin-bottom:20px;
+  }
+  h1{
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    font-weight:900;letter-spacing:.04em;
+    line-height:1.18;
+    color:#fff;
+  }
+  h1 .hl{color:var(--gold);}
+  .hero-lead{
+    margin-top:18px;max-width:34em;
+    font-size:1.02rem;color:#c6cedb;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;}
+  .btn-main{
+    background:var(--gold);color:#16202f;font-weight:800;
+    padding:12px 28px;border-radius:999px;font-size:.98rem;
+    transition:.2s;
+  }
+  .btn-main:hover{background:#f2c464;transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid rgba(232,180,74,.6);color:var(--gold);
+    padding:12px 26px;border-radius:999px;font-size:.98rem;transition:.2s;
+  }
+  .btn-ghost:hover{background:rgba(232,180,74,.12);}
+  .hero-stats{
+    display:flex;gap:34px;margin-top:38px;flex-wrap:wrap;
+  }
+  .hero-stats div strong{
+    display:block;font-size:1.5rem;color:var(--gold);font-weight:800;line-height:1.2;
+  }
+  .hero-stats div span{font-size:.82rem;color:#9aa6b8;letter-spacing:.05em;}
+
+  .hero-poster{
+    position:relative;border-radius:20px;overflow:hidden;
+    border:1px solid rgba(232,180,74,.3);
+    background:linear-gradient(155deg,#1e2b3f,#0d1622);
+    padding:22px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.8);
+  }
+  .poster-reel{width:100%;height:auto;}
+  .poster-caption{
+    margin-top:14px;font-size:.82rem;color:#95a2b6;text-align:center;letter-spacing:.08em;
+  }
+
+  /* ---------- 通用区块 ---------- */
+  section{padding:66px 0;}
+  .sec-head{margin-bottom:34px;max-width:44em;}
+  .eyebrow{
+    font-size:.78rem;letter-spacing:.22em;color:var(--gold-deep);
+    font-weight:700;margin-bottom:10px;
+  }
+  h2{
+    font-size:clamp(1.5rem,2.6vw,2rem);
+    font-weight:800;letter-spacing:.02em;color:var(--ink);
+    line-height:1.35;
+  }
+  .sec-desc{margin-top:12px;color:var(--muted);font-size:.96rem;}
+  .alt{background:var(--paper-2);}
+
+  /* ---------- 影片分类卡片 ---------- */
+  .cat-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .cat-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;transition:.22s;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .cat-card:hover{transform:translateY(-4px);border-color:rgba(200,148,42,.55);box-shadow:0 18px 34px -22px rgba(16,24,38,.4);}
+  .cat-icon{width:34px;height:34px;color:var(--gold-deep);}
+  .cat-card h3{font-size:1.05rem;font-weight:800;color:var(--ink);}
+  .cat-card p{font-size:.88rem;color:var(--muted);line-height:1.7;}
+  .cat-card .cnt{
+    margin-top:auto;font-size:.78rem;color:var(--gold-deep);letter-spacing:.06em;font-weight:700;
+  }
+
+  /* ---------- 热播列表 ---------- */
+  .film-list{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .film{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:.22s;
+  }
+  .film:hover{border-color:rgba(200,148,42,.55);box-shadow:0 18px 34px -24px rgba(16,24,38,.45);}
+  .film-thumb{
+    aspect-ratio:16/9;
+    background:linear-gradient(140deg,#1b2a3f,#0f1a28);
+    position:relative;display:flex;align-items:center;justify-content:center;
+  }
+  .film-thumb svg{width:46px;height:46px;color:rgba(232,180,74,.85);}
+  .film-tag{
+    position:absolute;top:12px;left:12px;
+    background:rgba(232,180,74,.92);color:#16202f;
+    font-size:.72rem;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.05em;
+  }
+  .film-body{padding:16px 18px 20px;}
+  .film-body h3{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:6px;}
+  .film-body p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+  .film-meta{
+    margin-top:12px;font-size:.76rem;color:#8a6a25;letter-spacing:.06em;font-weight:700;
+  }
+
+  /* ---------- 双栏说明 + 侧栏 ---------- */
+  .split{display:grid;grid-template-columns:1.5fr .9fr;gap:44px;align-items:start;}
+  .prose p{margin-bottom:16px;font-size:.97rem;color:#2b3546;}
+  .prose strong{color:var(--ink);font-weight:800;}
+  .side-box{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;
+  }
+  .side-box h3{font-size:1.02rem;font-weight:800;color:var(--ink);margin-bottom:14px;}
+  .side-box ul{list-style:none;}
+  .side-box li{
+    display:flex;gap:10px;font-size:.9rem;color:var(--muted);
+    padding:9px 0;border-bottom:1px dashed var(--line);
+  }
+  .side-box li:last-child{border-bottom:0;}
+  .side-box li::before{content:"◆";color:var(--gold);font-size:.7rem;line-height:1.9;}
+
+  /* ---------- 检索控件 ---------- */
+  .search-panel{
+    background:var(--ink);border-radius:var(--radius);
+    padding:34px 34px 30px;color:#eef1f6;
+  }
+  .search-panel h2{color:#fff;}
+  .search-panel .sec-desc{color:#a9b4c4;}
+  .search-row{
+    display:flex;gap:12px;margin-top:22px;flex-wrap:wrap;
+  }
+  .search-row input,.search-row select{
+    background:#1b2536;border:1px solid rgba(232,180,74,.35);
+    color:#eef1f6;border-radius:10px;padding:11px 14px;font-size:.92rem;
+    font-family:inherit;outline:none;
+  }
+  .search-row input{flex:1 1 220px;min-width:0;}
+  .search-row input:focus,.search-row select:focus{border-color:var(--gold);}
+  .search-row select{flex:0 1 160px;}
+  .search-row button{
+    background:var(--gold);color:#16202f;font-weight:800;border:0;
+    border-radius:10px;padding:11px 26px;font-size:.92rem;cursor:pointer;
+    font-family:inherit;transition:.2s;
+  }
+  .search-row button:hover{background:#f2c464;}
+  .search-result{
+    margin-top:18px;font-size:.88rem;color:#b7c1d1;min-height:1.6em;
+  }
+  .search-result b{color:var(--gold);}
+
+  /* ---------- 常见问题 ---------- */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .faq-item{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;
+  }
+  .faq-item h3{
+    font-size:.98rem;font-weight:800;color:var(--ink);margin-bottom:8px;
+    display:flex;gap:9px;
+  }
+  .faq-item h3 span{color:var(--gold-deep);}
+  .faq-item p{font-size:.88rem;color:var(--muted);line-height:1.75;}
+
+  /* ---------- 下载区 ---------- */
+  .dl-band{
+    background:linear-gradient(135deg,#1a2536,#101826);
+    border-radius:var(--radius);
+    padding:40px 38px;
+    display:flex;align-items:center;gap:30px;flex-wrap:wrap;
+    color:#eef1f6;
+    border:1px solid rgba(232,180,74,.28);
+  }
+  .dl-band .dl-txt{flex:1 1 320px;}
+  .dl-band h3{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px;}
+  .dl-band p{font-size:.9rem;color:#a9b4c4;}
+  .dl-btn{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--gold);color:#16202f;font-weight:800;
+    padding:13px 32px;border-radius:999px;font-size:.96rem;
+    pointer-events:none;
+  }
+  .dl-note{margin-top:10px;font-size:.76rem;color:#8b97a9;text-align:center;}
+
+  /* ---------- 页尾 ---------- */
+  footer.site{
+    background:#0c1420;color:#9aa6b8;
+    padding:48px 0 26px;margin-top:20px;
+    border-top:1px solid rgba(232,180,74,.22);
+  }
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;}
+  .foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .foot-brand .logo-text{font-size:1.08rem;}
+  .foot-grid p{font-size:.86rem;line-height:1.8;color:#8b97a9;}
+  .foot-grid h4{font-size:.9rem;color:#e7ebf2;font-weight:800;margin-bottom:12px;letter-spacing:.05em;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:8px;font-size:.86rem;}
+  .foot-grid a:hover{color:var(--gold);}
+  .foot-bottom{
+    margin-top:36px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);
+    font-size:.78rem;color:#6b7789;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;gap:36px;}
+    .hero-poster{max-width:460px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .film-list{grid-template-columns:repeat(2,1fr);}
+    .split{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:720px){
+    .navbar{gap:14px;}
+    .menu-toggle{display:block;margin-left:auto;}
+    nav.main{
+      display:none;width:100%;flex-direction:column;gap:0;
+      margin-left:0;padding-top:8px;
+    }
+    nav.main.open{display:flex;}
+    nav.main a{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+    .top-cta{display:none;}
+    .hero{padding:46px 0 44px;}
+    section{padding:50px 0;}
+    .cat-grid{grid-template-columns:1fr;}
+    .film-list{grid-template-columns:1fr;}
+    .faq{grid-template-columns:1fr;}
+    .search-panel{padding:26px 22px;}
+    .search-row select{flex:1 1 100%;}
+    .dl-band{padding:30px 24px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:24px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap navbar">
+    <a class="logo" href="#top" aria-label="金牌影院首页">
+      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#16202f"/>
+        <circle cx="32" cy="32" r="17" fill="none" stroke="#e8b44a" stroke-width="3"/>
+        <circle cx="32" cy="32" r="5" fill="#e8b44a"/>
+        <path d="M7 20h8M7 32h8M7 44h8M49 20h8M49 32h8M49 44h8" stroke="#e8b44a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="logo-text">金牌影院</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="展开导航" aria-expanded="false">☰</button>
+    <nav class="main" id="mainNav">
+      <a href="#categories">影片分类</a>
+      <a href="#hot">热播推荐</a>
+      <a href="#about">观影说明</a>
+      <a href="#search">影片检索</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="top-cta" href="#hot">开始观影</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="badge">在线观影 · 高清播放</span>
+        <h1>金牌影院</h1>
+        <p class="hero-lead">
+          金牌影院把电影、电视剧、动漫与综艺收进同一个页面：按类型找片、按热度翻片、按片名检索，选中即可进入播放页。片源分类清楚，入口直接，适合想快速落座开看的影迷。
+        </p>
+        <div class="hero-actions">
+          <a class="btn-main" href="#hot">浏览热播片单</a>
+          <a class="btn-ghost" href="#categories">按类型找片</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>4</strong><span>内容大类</span></div>
+          <div><strong>高清</strong><span>播放画质</span></div>
+          <div><strong>免注册</strong><span>浏览检索</span></div>
+        </div>
+      </div>
+      <div class="hero-poster">
+        <svg class="poster-reel" viewBox="0 0 320 240" role="img" aria-label="胶片与放映机主题插画">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e8b44a" stop-opacity=".95"/>
+              <stop offset="1" stop-color="#c8942a" stop-opacity=".55"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="34" width="272" height="150" rx="12" fill="none" stroke="url(#g1)" stroke-width="2"/>
+          <g fill="#e8b44a" opacity=".85">
+            <rect x="40" y="48" width="12" height="12" rx="2"/>
+            <rect x="40" y="72" width="12" height="12" rx="2"/>
+            <rect x="40" y="96" width="12" height="12" rx="2"/>
+            <rect x="40" y="120" width="12" height="12" rx="2"/>
+            <rect x="40" y="144" width="12" height="12" rx="2"/>
+            <rect x="268" y="48" width="12" height="12" rx="2"/>
+            <rect x="268" y="72" width="12" height="12" rx="2"/>
+            <rect x="268" y="96" width="12" height="12" rx="2"/>
+            <rect x="268" y="120" width="12" height="12" rx="2"/>
+            <rect x="268" y="144" width="12" height="12" rx="2"/>
+          </g>
+          <circle cx="160" cy="108" r="34" fill="none" stroke="#e8b44a" stroke-width="2.5"/>
+          <circle cx="160" cy="108" r="8" fill="#e8b44a"/>
+          <path d="M160 74v-12M160 142v12M126 108h-12M194 108h12" stroke="#e8b44a" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M120 200h80M140 214h40" stroke="#e8b44a" stroke-width="2.5" stroke-linecap="round" opacity=".6"/>
+        </svg>
+        <p class="poster-caption">一块屏幕，四个内容库</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 影片分类 -->
+  <section id="categories" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">CONTENT LIBRARY</div>
+        <h2>金牌影院的影片分类</h2>
+        <p class="sec-desc">先定类型，再定片单。四个大类覆盖日常观影的主要需求，每个分类下按热度与上线时间排列，进入分类页后可继续筛选。</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cat-card">
+          <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 10l6-3v10l-6-3z"/>
+          </svg>
+          <h3>电影</h3>
+          <p>院线新片与经典老片同库，按动作、剧情、科幻、喜剧等子类型分组，单页即可看清片长与简介。</p>
+          <span class="cnt">动作 · 剧情 · 科幻 · 喜剧</span>
+        </article>
+        <article class="cat-card">
+          <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          <h3>电视剧</h3>
+          <p>国产剧、美剧、日韩剧分线整理，支持按更新进度浏览，连载中的剧集会在列表标注最新集数。</p>
+          <span class="cnt">国产 · 美剧 · 日韩</span>
+        </article>
+        <article class="cat-card">
+          <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/>
+          </svg>
+          <h3>动漫</h3>
+          <p>番剧、剧场版与国漫分区呈现，新番按季度归档，长篇连载可跳到指定集数继续观看。</p>
+          <span class="cnt">番剧 · 剧场版 · 国漫</span>
+        </article>
+        <article class="cat-card">
+          <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M10 9l5 3-5 3z"/>
+          </svg>
+          <h3>综艺</h3>
+          <p>真人秀、音乐竞演与访谈节目按期更新，每期独立成条，方便按播出顺序追看。</p>
+          <span class="cnt">真人秀 · 音乐 · 访谈</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 热播推荐 -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">NOW PLAYING</div>
+        <h2>近期热播片单</h2>
+        <p class="sec-desc">金牌影院的热播区按播放热度排序，每周更新一次。以下为当前列表中的代表性条目，点击可进入对应分类查看同类影片。</p>
+      </div>
+      <div class="film-list">
+        <article class="film">
+          <div class="film-thumb">
+            <span class="film-tag">电影</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>
+          </div>
+          <div class="film-body">
+            <h3>动作片专题</h3>
+            <p>追车、格斗与爆破场面集中呈现，适合想一次看爽的观众，片单按节奏强度排列。</p>
+            <div class="film-meta">热度前列 · 高清播放</div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="film-thumb">
+            <span class="film-tag">剧集</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>
+          </div>
+          <div class="film-body">
+            <h3>悬疑剧连载</h3>
+            <p>多线叙事的罪案剧与推理剧合集，列表标注更新集数，适合按周追更。</p>
+            <div class="film-meta">持续更新 · 按集浏览</div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="film-thumb">
+            <span class="film-tag">动漫</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg>
+          </div>
+          <div class="film-body">
+            <h3>季度新番</h3>
+            <p>当季新番按开播时间归档，每部标注话数进度，便于从头补番或直接追最新一集。</p>
+            <div class="film-meta">季度更新 · 话数标注</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 观影说明 -->
+  <section id="about" class="alt">
+    <div class="wrap split">
+      <div class="prose">
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2 style="margin-bottom:20px;">金牌影院怎么用</h2>
+        <p>
+          <strong>金牌影院</strong>的页面结构围绕「找片—选片—播放」三步展开。首页承担找片的起点，影片分类与热播片单是两条并行的入口：前者按内容类型收敛范围，后者按热度给出参考。两条路径最终都落到具体影片的播放页。
+        </p>
+        <p>
+          进入分类页后，列表默认按热度排序，也可以切换到按上线时间查看。剧集类内容会在条目上标注已更新集数，连载中的作品不会因为更新而改变入口位置，追更时不必反复搜索片名。
+        </p>
+        <p>
+          播放页提供高清画质选项，画面与音轨随网络状况自动切换。若对某部影片不感兴趣，返回上一层即可继续浏览，浏览记录不影响后续推荐列表的默认排序。
+        </p>
+        <p>
+          对习惯先看简介再决定是否开播的观众，金牌影院在每张卡片上保留了短简介与类型标签，扫一眼就能判断是否合口味，省去逐个点开的时间。
+        </p>
+      </div>
+      <aside class="side-box">
+        <h3>使用要点</h3>
+        <ul>
+          <li>首页两条主入口：分类浏览与热播片单</li>
+          <li>列表支持热度与上线时间两种排序</li>
+          <li>连载剧集标注最新集数，便于追更</li>
+          <li>卡片附短简介与类型标签，先看再点</li>
+          <li>播放页可切换画质，适配不同网络</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 影片检索 -->
+  <section id="search">
+    <div class="wrap">
+      <div class="search-panel">
+        <div class="eyebrow" style="color:var(--gold);">QUICK FIND</div>
+        <h2>在金牌影院检索影片</h2>
+        <p class="sec-desc">输入片名关键词并选择内容类型，页面会给出对应的分类路径提示。检索在本地完成，不跳转外部页面。</p>
+        <form class="search-row" id="searchForm" onsubmit="return false;">
+          <input type="text" id="kw" placeholder="输入片名关键词，如：悬疑、新番、动作" aria-label="片名关键词">
+          <select id="type" aria-label="内容类型">
+            <option value="all">全部类型</option>
+            <option value="movie">电影</option>
+            <option value="tv">电视剧</option>
+            <option value="anime">动漫</option>
+            <option value="show">综艺</option>
+          </select>
+          <button type="button" id="searchBtn">检索</button>
+        </form>
+        <p class="search-result" id="searchResult" aria-live="polite">尚未检索，输入关键词后点击「检索」。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题 -->
+  <section id="faq" class="alt">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>关于金牌影院的常见问题</h2>
+        <p class="sec-desc">访客在浏览与播放环节最常提出的几个问题，答案基于站点当前的页面结构与功能范围。</p>
+      </div>
+      <div class="faq">
+        <article class="faq-item">
+          <h3><span>Q</span>观看影片需要注册账号吗？</h3>
+          <p>浏览分类、查看片单与检索影片无需注册。播放页按当前页面结构直接提供播放入口，不强制登录。</p>
+        </article>
+        <article class="faq-item">
+          <h3><span>Q</span>片源多久更新一次？</h3>
+          <p>热播片单每周更新一次排序；分类列表随新片上架同步变化，连载剧集在更新集数后即刷新标注。</p>
+        </article>
+        <article class="faq-item">
+          <h3><span>Q</span>找不到想看的影片怎么办？</h3>
+          <p>可先在检索区输入片名关键词，再按类型缩小范围。若仍未命中，说明片源暂未收录，可稍后再试。</p>
+        </article>
+        <article class="faq-item">
+          <h3><span>Q</span>播放卡顿可以怎么处理？</h3>
+          <p>播放页支持画质切换，网络不佳时可调低清晰度；同时建议关闭同网络下占用带宽的其他应用。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 下载区 -->
+  <section>
+    <div class="wrap">
+      <div class="dl-band">
+        <div class="dl-txt">
+          <h3>金牌影院客户端</h3>
+          <p>客户端汇总分类浏览、片单收藏与播放记录，桌面与移动端共用同一套内容库。</p>
+        </div>
+        <div>
+          <a class="dl-btn" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1" role="button">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+            下载
+          </a>
+          <p class="dl-note">客户端安装包正在准备中</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg width="30" height="30" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="14" fill="#16202f"/>
+            <circle cx="32" cy="32" r="17" fill="none" stroke="#e8b44a" stroke-width="3"/>
+            <circle cx="32" cy="32" r="5" fill="#e8b44a"/>
+            <path d="M7 20h8M7 32h8M7 44h8M49 20h8M49 32h8M49 44h8" stroke="#e8b44a" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <span class="logo-text">金牌影院</span>
+        </div>
+        <p>金牌影院是在线影视观影平台，收录电影、电视剧、动漫与综艺资源，提供分类浏览、热播片单与片名检索入口，帮助影迷更快找到想看的影片。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#categories">影片分类</a></li>
+          <li><a href="#hot">热播推荐</a></li>
+          <li><a href="#about">观影说明</a></li>
+          <li><a href="#search">影片检索</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>站点支持</h4>
+        <ul>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#top">返回顶部</a></li>
+          <li><a href="#search">片名检索</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 金牌影院 · 本站内容分类与片单信息以页面当前展示为准</span>
+      <span>观影前请留意所在地区相关规定</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggle && nav){
+      toggle.addEventListener('click', function(){
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav.addEventListener('click', function(e){
+        if(e.target.tagName === 'A'){
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    }
+
+    var typeMap = {
+      movie: '电影',
+      tv: '电视剧',
+      anime: '动漫',
+      show: '综艺',
+      all: '全部类型'
+    };
+    var typeAnchor = {
+      movie: '#categories',
+      tv: '#categories',
+      anime: '#categories',
+      show: '#categories',
+      all: '#categories'
+    };
+    var btn = document.getElementById('searchBtn');
+    var kw = document.getElementById('kw');
+    var type = document.getElementById('type');
+    var out = document.getElementById('searchResult');
+
+    function runSearch(){
+      var key = (kw.value || '').trim();
+      var t = type.value;
+      if(!key){
+        out.innerHTML = '请先输入片名关键词，再点击「检索」。';
+        return;
+      }
+      var typeText = typeMap[t] || '全部类型';
+      out.innerHTML = '已按关键词「<b>' + key.replace(/[<>&]/g,'') + '</b>」在 <b>' + typeText + '</b> 中检索，' +
+        '可前往 <a href="' + (typeAnchor[t] || '#categories') + '" style="color:#e8b44a;text-decoration:underline;">影片分类</a> ' +
+        '查看同类条目，或调整关键词再试。';
+    }
+    if(btn){ btn.addEventListener('click', runSearch); }
+    if(kw){
+      kw.addEventListener('keydown', function(e){
+        if(e.key === 'Enter'){ e.preventDefault(); runSearch(); }
+      });
+    }
+  })();
+</script>
+
+</body>
+            </html>
