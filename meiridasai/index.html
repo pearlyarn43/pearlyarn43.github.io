@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛推特yandex-推特每日大赛热点_yandex每日大赛榜单</title>
+<meta name="description" content="每日大赛推特yandex热点首页，汇总推特每日大赛的最新话题脉络、yandex索引下的讨论热度与榜单看点，帮助你快速了解每日大赛推特yandex在社交平台上的内容走向与热门条目。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101828'/%3E%3Cpath d='M18 44V20h8l6 12 6-12h8v24h-7V31l-5 10h-4l-5-10v13z' fill='%23ff5a3c'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#101828;
+  --ink-soft:#3d4a5c;
+  --muted:#6b7789;
+  --line:#e3e7ee;
+  --bg:#f6f7fa;
+  --card:#ffffff;
+  --accent:#ff5a3c;
+  --accent-deep:#d63f24;
+  --blue:#1d4ed8;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.7;
+  font-size:16px;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* 页头 */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{
+  display:flex;align-items:center;gap:24px;
+  padding:14px 0;
+}
+.logo{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:17px;letter-spacing:.3px;
+  color:var(--ink);flex-shrink:0;
+}
+.logo-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--ink);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.logo-mark svg{width:20px;height:20px}
+.nav{
+  display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;
+}
+.nav a{
+  padding:7px 13px;border-radius:999px;
+  font-size:14px;color:var(--ink-soft);
+  transition:background .18s,color .18s;
+  white-space:nowrap;
+}
+.nav a:hover{background:#eef1f6;color:var(--ink)}
+.nav a.cta{
+  background:var(--accent);color:#fff;font-weight:600;
+}
+.nav a.cta:hover{background:var(--accent-deep);color:#fff}
+
+/* 首屏 */
+.hero{
+  padding:52px 0 44px;
+  background:
+    radial-gradient(760px 340px at 88% -10%,rgba(255,90,60,.14),transparent 60%),
+    radial-gradient(560px 300px at 0% 110%,rgba(29,78,216,.10),transparent 60%);
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.35fr .85fr;gap:44px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:600;color:var(--accent-deep);
+  background:#fff1ed;border:1px solid #ffd9cf;
+  padding:5px 12px;border-radius:999px;margin-bottom:18px;
+}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{
+  font-size:clamp(28px,4.2vw,42px);
+  line-height:1.25;font-weight:800;letter-spacing:-.5px;
+  word-break:break-word;
+}
+.hero-lead{
+  margin-top:16px;font-size:16px;color:var(--ink-soft);max-width:34em;
+}
+.hero-actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:12px;
+  font-size:15px;font-weight:600;cursor:pointer;
+  border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s;
+}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px -8px rgba(255,90,60,.7)}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:#c9d1de;transform:translateY(-1px)}
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+.stat-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 16px;
+}
+.stat-num{font-size:24px;font-weight:800;letter-spacing:-.5px;color:var(--ink)}
+.stat-label{font-size:13px;color:var(--muted);margin-top:2px}
+.stat-card.accent{background:var(--ink);border-color:var(--ink)}
+.stat-card.accent .stat-num{color:#fff}
+.stat-card.accent .stat-label{color:#a9b4c4}
+
+/* 通用区块 */
+section.block{padding:52px 0}
+.section-head{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:20px;
+  margin-bottom:26px;flex-wrap:wrap;
+}
+.section-head h2{
+  font-size:clamp(21px,2.6vw,26px);font-weight:800;letter-spacing:-.3px;
+}
+.section-head p{font-size:14px;color:var(--muted);margin-top:6px;max-width:42em}
+.tag-link{
+  font-size:14px;font-weight:600;color:var(--accent-deep);
+  border-bottom:2px solid #ffd9cf;padding-bottom:2px;
+}
+.tag-link:hover{border-color:var(--accent)}
+
+/* 热点卡片 */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px;display:flex;flex-direction:column;gap:10px;
+  transition:transform .18s,box-shadow .18s,border-color .18s;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(16,24,40,.28);border-color:#d3dae5}
+.card-tag{
+  font-size:12px;font-weight:700;color:var(--blue);
+  background:#eef2ff;border-radius:6px;padding:3px 9px;align-self:flex-start;
+}
+.card h3{font-size:17px;font-weight:700;line-height:1.45}
+.card p{font-size:14px;color:var(--ink-soft)}
+.card-meta{
+  margin-top:auto;padding-top:12px;border-top:1px dashed var(--line);
+  font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;
+}
+
+/* 榜单 + 侧栏 */
+.split{display:grid;grid-template-columns:1.5fr 1fr;gap:26px;align-items:start}
+.panel{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;
+}
+.panel h2{font-size:20px;font-weight:800;margin-bottom:4px}
+.panel .panel-sub{font-size:13.5px;color:var(--muted);margin-bottom:18px}
+.rank-list{list-style:none;display:flex;flex-direction:column}
+.rank-list li{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+.rank-list li:last-child{border-bottom:0;padding-bottom:0}
+.rank-no{
+  width:26px;height:26px;border-radius:8px;flex-shrink:0;
+  display:grid;place-items:center;font-size:13px;font-weight:800;
+  background:#eef1f6;color:var(--ink-soft);
+}
+.rank-list li:nth-child(1) .rank-no{background:var(--accent);color:#fff}
+.rank-list li:nth-child(2) .rank-no{background:#ffb199;color:#7a2410}
+.rank-list li:nth-child(3) .rank-no{background:#ffd9cf;color:#8a3320}
+.rank-body h3{font-size:15px;font-weight:700;line-height:1.45}
+.rank-body p{font-size:13px;color:var(--muted);margin-top:2px}
+
+/* 索引说明 */
+.notes{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.note{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px;
+}
+.note h3{font-size:16px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.note h3 .ico{
+  width:26px;height:26px;border-radius:8px;background:#fff1ed;
+  display:grid;place-items:center;flex-shrink:0;
+}
+.note h3 .ico svg{width:14px;height:14px;stroke:var(--accent-deep)}
+.note p{font-size:14px;color:var(--ink-soft)}
+
+/* 检索条 */
+.search-bar{
+  display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;
+}
+.search-bar input{
+  flex:1;min-width:200px;
+  padding:11px 16px;border-radius:12px;border:1px solid var(--line);
+  font-size:15px;font-family:inherit;background:#fff;color:var(--ink);
+  outline:none;transition:border-color .15s,box-shadow .15s;
+}
+.search-bar input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,90,60,.14)}
+.search-bar button{
+  padding:11px 24px;border-radius:12px;border:0;cursor:pointer;
+  background:var(--ink);color:#fff;font-size:15px;font-weight:600;font-family:inherit;
+  transition:background .15s;
+}
+.search-bar button:hover{background:#243247}
+.search-hint{font-size:13px;color:var(--muted);margin-bottom:20px}
+.empty-tip{display:none;font-size:14px;color:var(--muted);padding:14px 0}
+
+/* 下载条 */
+.download-strip{
+  margin-top:26px;
+  background:linear-gradient(120deg,#101828,#1c2a3f);
+  border-radius:var(--radius);padding:28px 26px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  color:#fff;
+}
+.download-strip h2{font-size:20px;font-weight:800}
+.download-strip p{font-size:14px;color:#a9b4c4;margin-top:6px;max-width:36em}
+.dl-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--accent);color:#fff;font-weight:700;font-size:15px;
+  padding:12px 26px;border-radius:12px;flex-shrink:0;
+}
+.dl-btn[aria-disabled="true"]{pointer-events:none}
+
+/* 页尾 */
+.site-footer{
+  background:#fff;border-top:1px solid var(--line);
+  padding:36px 0 28px;margin-top:20px;
+}
+.footer-top{
+  display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+  padding-bottom:24px;border-bottom:1px solid var(--line);
+}
+.footer-brand{max-width:32em}
+.footer-brand .logo{margin-bottom:12px}
+.footer-brand p{font-size:13.5px;color:var(--muted)}
+.footer-cols{display:flex;gap:56px;flex-wrap:wrap}
+.footer-col h4{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:10px;letter-spacing:.4px}
+.footer-col a{display:block;font-size:13.5px;color:var(--muted);padding:3px 0}
+.footer-col a:hover{color:var(--accent-deep)}
+.footer-bottom{
+  padding-top:18px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12.5px;color:var(--muted);
+}
+
+/* 响应式 */
+@media(max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .cards{grid-template-columns:1fr 1fr}
+  .split{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr}
+  .nav{gap:2px}
+  .nav a{padding:6px 10px;font-size:13px}
+  .header-inner{flex-wrap:wrap;gap:10px}
+  .nav{margin-left:0;width:100%;overflow-x:auto;padding-bottom:2px}
+}
+@media(max-width:600px){
+  section.block{padding:38px 0}
+  .hero{padding:34px 0 32px}
+  .cards{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .stat-num{font-size:21px}
+  .download-strip{padding:22px 18px}
+  .panel{padding:20px 16px}
+  .footer-cols{gap:32px}
+  body{font-size:15.5px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="每日大赛推特yandex 首页">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 19V5h4l4 8 4-8h4v14h-3.4V9.6L13 18h-2L7.4 9.6V19z" fill="#ff5a3c"/>
+        </svg>
+      </span>
+      每日大赛推特yandex
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#hot">热点速览</a>
+      <a href="#rank">热度榜单</a>
+      <a href="#index">检索说明</a>
+      <a href="#search">内容检索</a>
+      <a class="cta" href="#download">下载</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>推特热点 · yandex 索引观察</span>
+        <h1>每日大赛推特yandex</h1>
+        <p class="hero-lead">把推特上每天刷屏的大赛讨论收拢到一处：谁在发、什么被反复转发、yandex 索引里又沉淀了哪些关键词。这里按条目梳理每日大赛推特yandex 的内容脉络，方便你先看结论再点进去。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#hot">查看今日热点
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#rank">浏览热度榜单</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card accent">
+          <div class="stat-num">每日</div>
+          <div class="stat-label">推特大赛话题更新节奏</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">双源</div>
+          <div class="stat-label">推特讨论 + yandex 索引</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6 类</div>
+          <div class="stat-label">热点条目归类方式</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1 页</div>
+          <div class="stat-label">集中看完主要脉络</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="hot">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>热点速览：今天推特在聊什么</h2>
+          <p>每日大赛推特yandex 的讨论通常由几条主线同时推进。下面按内容类型拆分，每条只讲清一个观察角度，避免重复堆叠。</p>
+        </div>
+        <a class="tag-link" href="#rank">跳到热度榜单 →</a>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <span class="card-tag">话题起点</span>
+          <h3>话题由谁带起</h3>
+          <p>每日大赛推特yandex 的讨论往往从少数几个高频账号起步，随后被转发链放大。观察首发账号的类型，比单看转发量更能判断话题性质。</p>
+          <div class="card-meta"><span>条目类型：溯源</span><span>阅读约 1 分钟</span></div>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">传播路径</span>
+          <h3>转发链如何扩散</h3>
+          <p>推特上的大赛内容常以截图、短评和引用转发三种形式流转。每日大赛推特yandex 的检索结果里，同一事件可能出现多个版本，需交叉比对。</p>
+          <div class="card-meta"><span>条目类型：路径</span><span>阅读约 1 分钟</span></div>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">关键词</span>
+          <h3>yandex 索引里的高频词</h3>
+          <p>把每日大赛推特yandex 放进搜索引擎，能看到讨论被反复浓缩成哪些词。高频词的变化，通常早于话题热度曲线的转折。</p>
+          <div class="card-meta"><span>条目类型：词频</span><span>阅读约 1 分钟</span></div>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">内容甄别</span>
+          <h3>截图与原文的差异</h3>
+          <p>大赛类内容易被二次剪辑。阅读每日大赛推特yandex 相关条目时，先找原始推文链接，再看截图，能减少被断章取义误导的概率。</p>
+          <div class="card-meta"><span>条目类型：甄别</span><span>阅读约 2 分钟</span></div>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">时间线</span>
+          <h3>一天内的热度起伏</h3>
+          <p>推特大赛话题多在固定时段集中爆发。每日大赛推特yandex 的条目按时间排列后，能看出上午预热、晚间高峰的常见节奏。</p>
+          <div class="card-meta"><span>条目类型：节奏</span><span>阅读约 1 分钟</span></div>
+        </article>
+
+        <article class="card">
+          <span class="card-tag">延伸阅读</span>
+          <h3>从单条到整个话题</h3>
+          <p>单条推文只是入口。顺着每日大赛推特yandex 的关联词继续翻，往往能找到同一话题下更完整的讨论集合，形成自己的判断。</p>
+          <div class="card-meta"><span>条目类型：延伸</span><span>阅读约 1 分钟</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="rank">
+    <div class="wrap split">
+      <div class="panel">
+        <h2>热度榜单：讨论集中的条目</h2>
+        <p class="panel-sub">按推特讨论密度与 yandex 索引可见度综合排序，仅作阅读顺序建议。</p>
+        <ol class="rank-list">
+          <li>
+            <span class="rank-no">1</span>
+            <div class="rank-body">
+              <h3>当日大赛主话题的原始推文</h3>
+              <p>优先看首发内容，它是后续所有转述的源头。</p>
+            </div>
+          </li>
+          <li>
+            <span class="rank-no">2</span>
+            <div class="rank-body">
+              <h3>高互动引用转发中的观点分歧</h3>
+              <p>同一画面被不同账号解读，分歧点往往最值得读。</p>
+            </div>
+          </li>
+          <li>
+            <span class="rank-no">3</span>
+            <div class="rank-body">
+              <h3>yandex 索引里的聚合词条</h3>
+              <p>把零散推文压缩成关键词，便于快速定位。</p>
+            </div>
+          </li>
+          <li>
+            <span class="rank-no">4</span>
+            <div class="rank-body">
+              <h3>跨语言账号的补充视角</h3>
+              <p>非中文推文常提供另一条时间线，可对照阅读。</p>
+            </div>
+          </li>
+          <li>
+            <span class="rank-no">5</span>
+            <div class="rank-body">
+              <h3>话题冷却后的复盘帖</h3>
+              <p>热度退去后的总结，信息密度通常高于爆发期。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <aside class="panel">
+        <h2>阅读顺序建议</h2>
+        <p class="panel-sub">面向第一次接触该主题的访问者。</p>
+        <div class="note" style="border:0;padding:0;background:transparent">
+          <p style="font-size:14px;color:var(--ink-soft);margin-bottom:14px">先确认话题起点，再看传播路径，最后用关键词做交叉验证。三步走完，对每日大赛推特yandex 的当日内容会有较完整的轮廓。</p>
+          <p style="font-size:14px;color:var(--ink-soft);margin-bottom:14px">遇到截图类内容，回到原始推文核对；遇到聚合词条，留意其收录时间，避免把旧内容当成新进展。</p>
+          <p style="font-size:14px;color:var(--ink-soft)">如果只想快速了解，直接读榜单前三条即可覆盖大部分讨论焦点。</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="index">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>检索说明：两个来源怎么配合</h2>
+          <p>推特负责即时性，yandex 负责沉淀与回溯。理解这一点，每日大赛推特yandex 的检索效率会明显不同。</p>
+        </div>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></span>推特的即时性</h3>
+          <p>推特上的大赛讨论以分钟为单位更新，适合追踪正在发生的内容。缺点是信息碎片化，同一事件可能被拆成数十条短推，需要自己拼合。</p>
+        </div>
+        <div class="note">
+          <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16 16l4 4"/></svg></span>yandex 的回溯价值</h3>
+          <p>搜索引擎会把一段时间内的相关内容收录成词条与快照。用每日大赛推特yandex 做检索，能补上推特时间线里已经刷走的部分，适合事后梳理。</p>
+        </div>
+        <div class="note">
+          <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg></span>交叉验证的方法</h3>
+          <p>先在小红书、推特等平台找到原始表述，再用 yandex 检索同一关键词的收录结果。两边的发布时间与措辞若有出入，以更早的原始内容为准。</p>
+        </div>
+        <div class="note">
+          <h3><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M6 4h9l3 3v13H6z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span>条目取舍原则</h3>
+          <p>本页只呈现可核对的内容脉络，不替读者下结论。涉及具体账号、数量与日期的表述，均以原始页面可见信息为限，不做推算或延伸。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="search">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <h2>内容检索：在本页快速定位</h2>
+          <p>输入关键词，页面会高亮匹配的热点条目。检索范围限于本页已列出的内容。</p>
+        </div>
+      </div>
+      <form class="search-bar" id="searchForm" role="search" onsubmit="return false;">
+        <input type="search" id="searchInput" placeholder="例如：转发、关键词、时间线" aria-label="检索本页热点条目">
+        <button type="button" id="searchBtn">检索</button>
+      </form>
+      <p class="search-hint" id="searchHint">当前显示全部 6 条热点条目。</p>
+      <div class="cards" id="cardList">
+        <article class="card" data-key="话题起点 首发 账号 溯源 转发链">
+          <span class="card-tag">话题起点</span>
+          <h3>话题由谁带起</h3>
+          <p>每日大赛推特yandex 的讨论往往从少数几个高频账号起步，随后被转发链放大。观察首发账号的类型，比单看转发量更能判断话题性质。</p>
+          <div class="card-meta"><span>条目类型：溯源</span><span>阅读约 1 分钟</span></div>
+        </article>
+        <article class="card" data-key="传播路径 转发链 截图 引用转发 扩散">
+          <span class="card-tag">传播路径</span>
+          <h3>转发链如何扩散</h3>
+          <p>推特上的大赛内容常以截图、短评和引用转发三种形式流转。每日大赛推特yandex 的检索结果里，同一事件可能出现多个版本，需交叉比对。</p>
+          <div class="card-meta"><span>条目类型：路径</span><span>阅读约 1 分钟</span></div>
+        </article>
+        <article class="card" data-key="关键词 yandex 索引 高频词 词频">
+          <span class="card-tag">关键词</span>
+          <h3>yandex 索引里的高频词</h3>
+          <p>把每日大赛推特yandex 放进搜索引擎，能看到讨论被反复浓缩成哪些词。高频词的变化，通常早于话题热度曲线的转折。</p>
+          <div class="card-meta"><span>条目类型：词频</span><span>阅读约 1 分钟</span></div>
+        </article>
+        <article class="card" data-key="内容甄别 截图 原文 差异 断章取义">
+          <span class="card-tag">内容甄别</span>
+          <h3>截图与原文的差异</h3>
+          <p>大赛类内容易被二次剪辑。阅读每日大赛推特yandex 相关条目时，先找原始推文链接，再看截图，能减少被断章取义误导的概率。</p>
+          <div class="card-meta"><span>条目类型：甄别</span><span>阅读约 2 分钟</span></div>
+        </article>
+        <article class="card" data-key="时间线 热度起伏 节奏 时段 预热 高峰">
+          <span class="card-tag">时间线</span>
+          <h3>一天内的热度起伏</h3>
+          <p>推特大赛话题多在固定时段集中爆发。每日大赛推特yandex 的条目按时间排列后，能看出上午预热、晚间高峰的常见节奏。</p>
+          <div class="card-meta"><span>条目类型：节奏</span><span>阅读约 1 分钟</span></div>
+        </article>
+        <article class="card" data-key="延伸阅读 关联词 话题 集合">
+          <span class="card-tag">延伸阅读</span>
+          <h3>从单条到整个话题</h3>
+          <p>单条推文只是入口。顺着每日大赛推特yandex 的关联词继续翻，往往能找到同一话题下更完整的讨论集合，形成自己的判断。</p>
+          <div class="card-meta"><span>条目类型：延伸</span><span>阅读约 1 分钟</span></div>
+        </article>
+      </div>
+      <p class="empty-tip" id="emptyTip">没有匹配的条目，换个更短的关键词试试。</p>
+
+      <div class="download-strip" id="download">
+        <div>
+          <h2>下载每日大赛推特yandex 条目包</h2>
+          <p>包含本页热点条目、榜单排序与检索说明的离线版本，方便在无网络环境下阅读，后续会随内容更新替换。</p>
+        </div>
+        <a class="dl-btn" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+          下载
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="#top">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 19V5h4l4 8 4-8h4v14h-3.4V9.6L13 18h-2L7.4 9.6V19z" fill="#ff5a3c"/>
+            </svg>
+          </span>
+          每日大赛推特yandex
+        </a>
+        <p>围绕推特每日大赛讨论与 yandex 索引结果的阅读入口，按条目整理话题起点、传播路径与关键词脉络，帮助访问者更快形成自己的判断。</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>页面导航</h4>
+          <a href="#hot">热点速览</a>
+          <a href="#rank">热度榜单</a>
+          <a href="#index">检索说明</a>
+          <a href="#search">内容检索</a>
+        </div>
+        <div class="footer-col">
+          <h4>阅读提示</h4>
+          <a href="#index">两个来源如何配合</a>
+          <a href="#rank">榜单排序依据</a>
+          <a href="#search">本页检索范围</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>每日大赛推特yandex · 热点条目阅读首页</span>
+      <span>内容以原始页面可见信息为限，不构成任何结论性判断</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('searchInput');
+  var btn = document.getElementById('searchBtn');
+  var hint = document.getElementById('searchHint');
+  var empty = document.getElementById('emptyTip');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#cardList .card'));
+
+  function run(){
+    var q = (input.value || '').trim().toLowerCase();
+    if(!q){
+      cards.forEach(function(c){ c.style.display = ''; });
+      empty.style.display = 'none';
+      hint.textContent = '当前显示全部 6 条热点条目。';
+      return;
+    }
+    var matched = 0;
+    cards.forEach(function(c){
+      var text = (c.textContent + ' ' + (c.getAttribute('data-key') || '')).toLowerCase();
+      var ok = text.indexOf(q) !== -1;
+      c.style.display = ok ? '' : 'none';
+      if(ok) matched++;
+    });
+    empty.style.display = matched ? 'none' : 'block';
+    hint.textContent = matched
+      ? '匹配到 ' + matched + ' 条热点条目，关键词：' + input.value.trim()
+      : '没有匹配的条目，换个更短的关键词试试。';
+  }
+
+  btn.addEventListener('click', run);
+  input.addEventListener('input', run);
+  input.addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ e.preventDefault(); run(); }
+  });
+})();
+</script>
+
+</body>
+</html>
